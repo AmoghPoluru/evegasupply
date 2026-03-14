@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Payload media uploads (keep .gitkeep but ignore uploaded files)
+/media/*
+!/media/.gitkeep
+
 # vercel
 .vercel
 
