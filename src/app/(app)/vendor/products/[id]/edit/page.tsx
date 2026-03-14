@@ -2,7 +2,7 @@ import { requireVendor } from '@/lib/middleware/vendor-auth';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { notFound } from 'next/navigation';
-import { ProductForm } from '../components/ProductForm';
+import { ProductForm } from '../../components/ProductForm';
 
 export default async function EditProductPage({
   params,
@@ -42,7 +42,7 @@ export default async function EditProductPage({
       category: product.category || '',
       unitPrice: product.unitPrice || 0,
       moq: product.moq || 1,
-      sku: product.sku || '',
+      sku: (product as any).sku || '',
       images,
     };
 

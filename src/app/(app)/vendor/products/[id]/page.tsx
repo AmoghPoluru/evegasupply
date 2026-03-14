@@ -58,7 +58,7 @@ export default async function ProductDetailPage({
               Back to Products
             </Link>
             <h1 className="text-2xl font-semibold text-gray-900">
-              {product.title || product.name || 'Product Details'}
+              {product.title || 'Product Details'}
             </h1>
             <p className="text-sm text-gray-600 mt-1">View and manage product details</p>
           </div>
@@ -117,7 +117,7 @@ export default async function ProductDetailPage({
                 <TableBody>
                   <TableRow>
                     <TableHead className="w-[150px]">Name</TableHead>
-                    <TableCell>{product.title || product.name || '-'}</TableCell>
+                     <TableCell>{product.title || '-'}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableHead>Description</TableHead>
@@ -135,7 +135,7 @@ export default async function ProductDetailPage({
                   </TableRow>
                   <TableRow>
                     <TableHead>SKU</TableHead>
-                    <TableCell>{product.sku || '-'}</TableCell>
+                     <TableCell>{(product as any).sku || '-'}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableHead>Unit Price</TableHead>
@@ -151,15 +151,15 @@ export default async function ProductDetailPage({
                   </TableRow>
                   <TableRow>
                     <TableHead>Status</TableHead>
-                    <TableCell>
-                      {product.isArchived ? (
-                        <Badge variant="secondary">Archived</Badge>
-                      ) : product.isPrivate ? (
-                        <Badge variant="outline">Draft</Badge>
-                      ) : (
-                        <Badge variant="default">Published</Badge>
-                      )}
-                    </TableCell>
+                     <TableCell>
+                       {(product as any).isArchived ? (
+                         <Badge variant="secondary">Archived</Badge>
+                       ) : (product as any).isPrivate ? (
+                         <Badge variant="outline">Draft</Badge>
+                       ) : (
+                         <Badge variant="default">Published</Badge>
+                       )}
+                     </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -94,7 +94,7 @@ export default function BuyerOrdersPage() {
         </Card>
       ) : (
         <OrdersTable
-          orders={data?.orders || []}
+          orders={(data?.orders || []) as any}
           totalDocs={data?.totalDocs || 0}
           page={page}
           totalPages={data?.totalPages || 0}

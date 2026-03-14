@@ -82,7 +82,7 @@ export default function BuyerRFQsPage() {
         </Card>
       ) : (
         <RFQsTable
-          rfqs={data?.rfqs || []}
+          rfqs={(data?.rfqs || []) as any}
           totalDocs={data?.totalDocs || 0}
           page={page}
           totalPages={data?.totalPages || 0}

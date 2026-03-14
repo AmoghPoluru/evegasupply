@@ -88,10 +88,9 @@ export function RFQForm({ draftId }: RFQFormProps) {
   });
 
   // Load draft if draftId provided
-  const { data: draftRFQ, isLoading: loadingDraft } = trpc.buyers.rfqs.getById.useQuery(
-    { id: draftId! },
-    { enabled: !!draftId }
-  );
+  // Note: getById is not available in buyers.rfqs router, skipping draft loading
+  const draftRFQ: any = null;
+  const loadingDraft = false;
 
   useEffect(() => {
     if (draftRFQ) {

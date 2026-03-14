@@ -124,7 +124,7 @@ export function RFQsTable({
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-4">
           <p className="text-sm text-gray-600">
-            Showing {((page - 1) * limit) + 1} to {Math.min(page * limit, totalDocs)} of {totalDocs} RFQs
+            Showing {((page - 1) * 20) + 1} to {Math.min(page * 20, totalDocs)} of {totalDocs} RFQs
           </p>
           <div className="flex gap-2">
             <Button

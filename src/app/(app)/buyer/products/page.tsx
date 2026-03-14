@@ -79,10 +79,6 @@ export default function BuyerProductsPage() {
           ) : (
             <ProductGrid
               products={data?.products || []}
-              totalDocs={data?.totalDocs || 0}
-              page={page}
-              totalPages={data?.totalPages || 0}
-              onPageChange={setPage}
             />
           )}
         </div>

@@ -9,6 +9,7 @@ export const productsRouter = createTRPCRouter({
         page: z.number().min(1).optional().default(1),
         supplierId: z.string().optional(),
         category: z.string().optional(),
+        search: z.string().optional(),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -19,10 +20,17 @@ export const productsRouter = createTRPCRouter({
       if (input.category) {
         where.category = { equals: input.category };
       }
+      if (input.search) {
+        where.or = [
+          { title: { contains: input.search, options: 'i' } },
+          { description: { contains: input.search, options: 'i' } },
+          { sku: { contains: input.search, options: 'i' } },
+        ];
+      }
 
       const result = await ctx.payload.find({
         collection: 'products',
-        where,
+        where: where as any,
         limit: input.limit,
         page: input.page,
         sort: '-createdAt',
@@ -88,7 +96,7 @@ export const productsRouter = createTRPCRouter({
 
       const result = await ctx.payload.find({
         collection: 'products',
-        where,
+        where: where as any,
         limit: input.limit,
         page: input.page,
         sort: '-createdAt',

@@ -36,7 +36,7 @@ const inquiryFormSchema = z.object({
   supplierId: z.string().min(1, 'Supplier is required if no product selected'),
   subject: z.string().min(1, 'Subject is required'),
   message: z.string().min(1, 'Message is required'),
-  inquiryType: z.enum(['product', 'general', 'quote']).optional().default('general'),
+  inquiryType: z.enum(['product', 'general', 'quote']).default('general'),
   attachments: z.array(z.string()).optional(),
 }).refine((data) => data.productId || data.supplierId, {
   message: 'Either product or supplier must be selected',
@@ -55,7 +55,7 @@ export function InquiryForm({ productId, supplierId }: InquiryFormProps) {
   const utils = trpc.useUtils();
 
   const form = useForm<InquiryFormValues>({
-    resolver: zodResolver(inquiryFormSchema),
+    resolver: zodResolver(inquiryFormSchema) as any,
     defaultValues: {
       productId: productId || '',
       supplierId: supplierId || '',
@@ -80,7 +80,7 @@ export function InquiryForm({ productId, supplierId }: InquiryFormProps) {
         : (product.supplier as any)?.id;
       
       form.setValue('supplierId', supplierId || '');
-      form.setValue('subject', `Inquiry about ${product.title || product.name || 'product'}`);
+      form.setValue('subject', `Inquiry about ${product.title || 'product'}`);
     }
   }, [product, form]);
 
@@ -144,7 +144,7 @@ export function InquiryForm({ productId, supplierId }: InquiryFormProps) {
 
             {product && (
               <div className="p-3 bg-blue-50 rounded-lg">
-                <p className="text-sm font-medium">Product: {product.title || product.name}</p>
+                <p className="text-sm font-medium">Product: {product.title}</p>
                 <p className="text-xs text-gray-600">Supplier will be automatically selected</p>
               </div>
             )}

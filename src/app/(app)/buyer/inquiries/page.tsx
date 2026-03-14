@@ -81,7 +81,7 @@ export default function BuyerInquiriesPage() {
         </Card>
       ) : (
         <InquiriesTable
-          inquiries={data?.inquiries || []}
+          inquiries={(data?.inquiries || []) as any}
           totalDocs={data?.totalDocs || 0}
           page={page}
           totalPages={data?.totalPages || 0}

@@ -44,7 +44,7 @@ async function fixBuyerProfile() {
 
     // Check if buyer profile exists
     const buyersResult = await payload.find({
-      collection: 'buyers',
+      collection: 'buyers' as any,
       where: { user: { equals: user.id } },
       limit: 1,
     });
@@ -55,7 +55,7 @@ async function fixBuyerProfile() {
       console.log(`✓ Found existing buyer profile: ${buyer.companyName || buyer.id}`);
 
       await payload.update({
-        collection: 'buyers',
+        collection: 'buyers' as any,
         id: buyer.id,
         data: {
           verifiedBuyer: true,
@@ -73,7 +73,7 @@ async function fixBuyerProfile() {
       console.log(`⚠ No buyer profile found. Creating new one...`);
 
       const buyer = await payload.create({
-        collection: 'buyers',
+        collection: 'buyers' as any,
         data: {
           user: user.id,
           companyName: `${user.name || user.email}'s Company`,

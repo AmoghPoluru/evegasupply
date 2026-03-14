@@ -72,7 +72,7 @@ export default function BuyerQuotesPage() {
         </Card>
       ) : (
         <QuotesTable
-          quotes={data?.quotes || []}
+          quotes={(data?.quotes || []) as any}
           totalDocs={data?.totalDocs || 0}
           page={page}
           totalPages={data?.totalPages || 0}

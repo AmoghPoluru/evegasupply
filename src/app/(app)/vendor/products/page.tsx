@@ -223,7 +223,7 @@ export default function VendorProductsPage() {
         </div>
       ) : (
         <ProductsTable
-          products={data?.products || []}
+          products={(data?.products || []) as any}
           totalDocs={data?.totalDocs || 0}
           page={page}
           totalPages={data?.totalPages || 0}

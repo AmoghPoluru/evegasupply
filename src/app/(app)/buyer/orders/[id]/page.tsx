@@ -1,7 +1,8 @@
 import { requireBuyer } from '@/lib/middleware/buyer-auth';
 import { getPayload } from 'payload';
 import config from '@payload-config';
-import { notFound, headers } from 'next/navigation';
+import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import { OrderDetailClient } from './OrderDetailClient';
 
 export default async function OrderDetailPage({

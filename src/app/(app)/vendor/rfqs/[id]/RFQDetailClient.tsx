@@ -83,19 +83,19 @@ export function RFQDetailClient({ rfqId, initialRFQ }: RFQDetailClientProps) {
                 <TableRow>
                   <TableHead>Budget Range</TableHead>
                   <TableCell>
-                    {rfq.budgetRange?.min && rfq.budgetRange?.max
-                      ? `$${rfq.budgetRange.min.toLocaleString()} - $${rfq.budgetRange.max.toLocaleString()}`
-                      : rfq.budgetRange?.min
-                      ? `$${rfq.budgetRange.min.toLocaleString()}+`
-                      : '-'}
+                     {(rfq as any).budgetRange?.min && (rfq as any).budgetRange?.max
+                       ? `$${(rfq as any).budgetRange.min.toLocaleString()} - $${(rfq as any).budgetRange.max.toLocaleString()}`
+                       : (rfq as any).budgetRange?.min
+                       ? `$${(rfq as any).budgetRange.min.toLocaleString()}+`
+                       : '-'}
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableHead>Deadline</TableHead>
                   <TableCell>
-                    {rfq.deadline
-                      ? format(new Date(rfq.deadline), 'MMM dd, yyyy')
-                      : '-'}
+                     {(rfq as any).deadline
+                       ? format(new Date((rfq as any).deadline), 'MMM dd, yyyy')
+                       : '-'}
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -133,7 +133,7 @@ export function RFQDetailClient({ rfqId, initialRFQ }: RFQDetailClientProps) {
       </div>
 
       {/* Specifications */}
-      {rfq.specifications && Array.isArray(rfq.specifications) && rfq.specifications.length > 0 && (
+       {(rfq as any).specifications && Array.isArray((rfq as any).specifications) && (rfq as any).specifications.length > 0 && (
         <Card className="mt-6">
           <CardHeader>
             <CardTitle>Specifications</CardTitle>
@@ -141,7 +141,7 @@ export function RFQDetailClient({ rfqId, initialRFQ }: RFQDetailClientProps) {
           <CardContent>
             <Table>
               <TableBody>
-                {rfq.specifications.map((spec: any, index: number) => (
+                 {(rfq as any).specifications.map((spec: any, index: number) => (
                   <TableRow key={index}>
                     <TableHead className="w-[200px]">{spec.key || 'Specification'}</TableHead>
                     <TableCell>{spec.value || '-'}</TableCell>

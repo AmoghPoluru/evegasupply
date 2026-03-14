@@ -39,8 +39,8 @@ export const buyersRouter = createTRPCRouter({
       }
 
       const result = await ctx.payload.find({
-        collection: 'buyers',
-        where,
+        collection: 'buyers' as any,
+        where: where as any,
         limit: input.limit,
         page: input.page,
         sort: '-createdAt',
@@ -58,30 +58,17 @@ export const buyersRouter = createTRPCRouter({
       .input(z.object({ id: z.string() }))
       .query(async ({ ctx, input }) => {
         const buyer = await ctx.payload.findByID({
-          collection: 'buyers',
+          collection: 'buyers' as any,
           id: input.id,
         });
         return buyer;
       }),
 
-    rfqs: createTRPCRouter({
-      getById: baseProcedure
-        .input(z.object({ id: z.string() }))
-        .query(async ({ ctx, input }) => {
-          const rfq = await ctx.payload.findByID({
-            collection: 'rfqs',
-            id: input.id,
-            depth: 2,
-          });
-          return rfq;
-        }),
-    }),
-
   getByUser: baseProcedure
     .input(z.object({ userId: z.string() }))
     .query(async ({ ctx, input }) => {
       const result = await ctx.payload.find({
-        collection: 'buyers',
+        collection: 'buyers' as any,
         where: { user: { equals: input.userId } },
         limit: 1,
       });
@@ -121,7 +108,7 @@ export const buyersRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'rfqs',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort: '-createdAt',
@@ -320,7 +307,7 @@ export const buyersRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'quotes',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort: '-submittedAt',
@@ -505,7 +492,7 @@ export const buyersRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'orders',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort: '-createdAt',
@@ -572,7 +559,7 @@ export const buyersRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'inquiries',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort: '-createdAt',

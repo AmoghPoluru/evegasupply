@@ -40,7 +40,7 @@ export const vendorsRouter = createTRPCRouter({
 
       const result = await ctx.payload.find({
         collection: 'vendors',
-        where,
+        where: where as any,
         limit: input.limit,
         page: input.page,
         sort: '-createdAt',
@@ -127,7 +127,7 @@ export const vendorsRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'vendors',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort,
@@ -224,22 +224,22 @@ export const vendorsRouter = createTRPCRouter({
         }
         // Get vendor's orders
         const where: Record<string, unknown> = {
-          supplier: { equals: input.vendorId },
+          supplier: { equals: vendorId },
         };
 
         if (input.startDate || input.endDate) {
-          where.createdAt = {};
+          where.createdAt = {} as any;
           if (input.startDate) {
-            where.createdAt.greaterThanEqual = input.startDate;
+            (where.createdAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            where.createdAt.lessThanEqual = input.endDate;
+            (where.createdAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const orders = await ctx.payload.find({
           collection: 'orders',
-          where,
+          where: where as any,
           limit: 1000,
           sort: 'createdAt',
         });
@@ -291,22 +291,22 @@ export const vendorsRouter = createTRPCRouter({
           throw new Error('Vendor not found. Please ensure you are logged in as a vendor.');
         }
         const where: Record<string, unknown> = {
-          supplier: { equals: input.vendorId },
+          supplier: { equals: vendorId },
         };
 
         if (input.startDate || input.endDate) {
-          where.createdAt = {};
+          where.createdAt = {} as any;
           if (input.startDate) {
-            where.createdAt.greaterThanEqual = input.startDate;
+            (where.createdAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            where.createdAt.lessThanEqual = input.endDate;
+            (where.createdAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const orders = await ctx.payload.find({
           collection: 'orders',
-          where,
+          where: where as any,
           limit: 1000,
         });
 
@@ -343,22 +343,22 @@ export const vendorsRouter = createTRPCRouter({
           throw new Error('Vendor not found. Please ensure you are logged in as a vendor.');
         }
         const where: Record<string, unknown> = {
-          supplier: { equals: input.vendorId },
+          supplier: { equals: vendorId },
         };
 
         if (input.startDate || input.endDate) {
-          where.createdAt = {};
+          where.createdAt = {} as any;
           if (input.startDate) {
-            where.createdAt.greaterThanEqual = input.startDate;
+            (where.createdAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            where.createdAt.lessThanEqual = input.endDate;
+            (where.createdAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const orders = await ctx.payload.find({
           collection: 'orders',
-          where,
+          where: where as any,
           limit: 1000,
         });
 
@@ -424,7 +424,7 @@ export const vendorsRouter = createTRPCRouter({
         // Get vendor's products to find matching RFQs
         const vendorProducts = await ctx.payload.find({
           collection: 'products',
-          where: { supplier: { equals: input.vendorId } },
+          where: { supplier: { equals: vendorId } },
           limit: 1000,
         });
 
@@ -436,18 +436,18 @@ export const vendorsRouter = createTRPCRouter({
         };
 
         if (input.startDate || input.endDate) {
-          rfqWhere.createdAt = {};
+          rfqWhere.createdAt = {} as any;
           if (input.startDate) {
-            rfqWhere.createdAt.greaterThanEqual = input.startDate;
+            (rfqWhere.createdAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            rfqWhere.createdAt.lessThanEqual = input.endDate;
+            (rfqWhere.createdAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const rfqs = await ctx.payload.find({
           collection: 'rfqs',
-          where: rfqWhere,
+          where: rfqWhere as any,
           limit: 1000,
         });
 
@@ -457,18 +457,18 @@ export const vendorsRouter = createTRPCRouter({
         };
 
         if (input.startDate || input.endDate) {
-          quotesWhere.submittedAt = {};
+          quotesWhere.submittedAt = {} as any;
           if (input.startDate) {
-            quotesWhere.submittedAt.greaterThanEqual = input.startDate;
+            (quotesWhere.submittedAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            quotesWhere.submittedAt.lessThanEqual = input.endDate;
+            (quotesWhere.submittedAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const quotes = await ctx.payload.find({
           collection: 'quotes',
-          where: quotesWhere,
+          where: quotesWhere as any,
           limit: 1000,
         });
 
@@ -503,7 +503,7 @@ export const vendorsRouter = createTRPCRouter({
         // Get vendor's products
         const vendorProducts = await ctx.payload.find({
           collection: 'products',
-          where: { supplier: { equals: input.vendorId } },
+          where: { supplier: { equals: vendorId } },
           limit: 1000,
         });
 
@@ -515,18 +515,18 @@ export const vendorsRouter = createTRPCRouter({
         };
 
         if (input.startDate || input.endDate) {
-          where.createdAt = {};
+          where.createdAt = {} as any;
           if (input.startDate) {
-            where.createdAt.greaterThanEqual = input.startDate;
+            (where.createdAt as any).greaterThanEqual = input.startDate;
           }
           if (input.endDate) {
-            where.createdAt.lessThanEqual = input.endDate;
+            (where.createdAt as any).lessThanEqual = input.endDate;
           }
         }
 
         const inquiries = await ctx.payload.find({
           collection: 'inquiries',
-          where,
+          where: where as any,
           limit: 1000,
         });
 
@@ -814,7 +814,7 @@ export const vendorsRouter = createTRPCRouter({
 
         const result = await ctx.payload.find({
           collection: 'rfqs',
-          where,
+          where: where as any,
           limit: input.limit,
           page: input.page,
           sort: '-createdAt',

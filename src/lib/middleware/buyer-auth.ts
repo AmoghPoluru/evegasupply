@@ -32,7 +32,7 @@ export async function getBuyerStatus(): Promise<BuyerStatus> {
 
   // Find buyer associated with this user
   const buyersResult = await payload.find({
-    collection: 'buyers',
+    collection: 'buyers' as any,
     where: { user: { equals: user.id } },
     limit: 1,
   });

@@ -42,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
       images: product.images || [],
     };
     
-    addItem(productData, product.moq || 1);
+    addItem(productData as any, product.moq || 1);
     toast.success('Product added to cart');
   };
   

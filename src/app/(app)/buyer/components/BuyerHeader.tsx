@@ -50,9 +50,9 @@ export function BuyerHeader() {
       <div className="flex items-center justify-between h-full px-6">
         <div className="flex items-center gap-4">
           <h1 className="text-lg font-semibold">Buyer Dashboard</h1>
-          {buyer && (
+          {buyer && (buyer as any).companyName && (
             <span className="text-sm text-gray-300">
-              {buyer.companyName}
+              {(buyer as any).companyName}
             </span>
           )}
         </div>
